@@ -1,30 +1,54 @@
 {
-    "name": "template-vite-ts",
-    "description": "A Phaser 3 TypeScript template using Vite.",
-    "version": "1.4.0",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/phaserjs/template-vite-ts.git"
-    },
-    "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
-    "license": "MIT",
-    "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
-    "bugs": {
-        "url": "https://github.com/phaserjs/template-vite-ts/issues"
-    },
-    "homepage": "https://github.com/phaserjs/template-vite-ts#readme",
-    "scripts": {
-        "dev": "node log.js dev & vite --config vite/config.dev.mjs",
-        "build": "node log.js build & vite build --config vite/config.prod.mjs",
-        "dev-nolog": "vite --config vite/config.dev.mjs",
-        "build-nolog": "vite build --config vite/config.prod.mjs"
-    },
-    "devDependencies": {
-        "typescript": "~5.7.2",
-        "vite": "^6.3.1"
-    },
-    "dependencies": {
-        "phaser": "^3.90.0",
-        "terser": "^5.39.0"
-    }
+  "name": "template-vite-ts",
+  "description": "A Phaser 3 TypeScript template using Vite.",
+  "version": "1.4.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phaserjs/template-vite-ts.git"
+  },
+  "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
+  "license": "MIT",
+  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+  "bugs": {
+    "url": "https://github.com/phaserjs/template-vite-ts/issues"
+  },
+  "homepage": "https://github.com/phaserjs/template-vite-ts#readme",
+  "scripts": {
+    "build": "node log.js build & vite build --config vite/config.prod.mjs",
+    "dev": "electron .",
+    "lint": "eslint \"src/**/*.{js,mjs,cjs,ts,mts,cts}\" --fix",
+    "make": "electron-forge make",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "web": "node log.js dev & vite --config vite/config.dev.mjs"
+  },
+  "main": "main.js",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "phaser": "^3.90.0",
+    "terser": "^5.39.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.1",
+    "@electron-forge/maker-deb": "^7.8.1",
+    "@electron-forge/maker-rpm": "^7.8.1",
+    "@electron-forge/maker-squirrel": "^7.8.1",
+    "@electron-forge/maker-zip": "^7.8.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
+    "@electron-forge/plugin-fuses": "^7.8.1",
+    "@electron/fuses": "^1.8.0",
+    "@types/node": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "electron": "^37.2.3",
+    "eslint": "^8.0.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "globals": "^16.3.0",
+    "prettier": "^2.3.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vite": "^6.3.1"
+  }
 }
