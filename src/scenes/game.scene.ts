@@ -1,58 +1,94 @@
 import Phaser from 'phaser';
+import { ConsoleEntity } from '../entities/console.entity';
+import { InputEntity } from '../entities/input.entity';
+import { WindowEntity } from '../entities/window.entity';
+
+import { CommandsScenario } from '../scenarios/commands.scenario';
+import { StartScenario } from '../scenarios/start.scenario';
 
 export class GameScene extends Phaser.Scene {
-  private randomNumber: number;
-  private guessInput!: HTMLInputElement;
-  private messageText!: Phaser.GameObjects.Text;
+  console!: ConsoleEntity;
+  inputField!: InputEntity;
+  window!: WindowEntity;
 
   constructor() {
     super({ key: 'GameScene' });
-    this.randomNumber = this.generateRandomNumber(1, 100);
   }
 
   preload() {}
 
   create() {
-    this.messageText = this.add
-      .text(400, 250, 'Угадай число от 1 до 100!', {
-        fontSize: '32px',
-        color: '#fff',
-      })
-      .setOrigin(0.5);
-
-    // Создание HTML input
-    const element = document.createElement('input');
-    element.setAttribute('type', 'number');
-    element.setAttribute('placeholder', 'Введите число...');
-    element.style.fontSize = '32px';
-    element.style.position = 'absolute';
-    element.style.left = '50%';
-    element.style.top = '300px';
-    element.style.transform = 'translateX(-50%)';
-    document.body.appendChild(element);
-
-    this.guessInput = element;
-    this.guessInput.addEventListener('change', () => this.checkGuess());
+    this.createConsole();
+    this.createInputField();
+    this.createWindow();
+    this.startGame();
   }
 
-  private generateRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  update() {}
+
+  createConsole() {
+    this.console = new ConsoleEntity();
+
+    const console = this.add.dom(0, 0, this.console.getContainer());
+    console.setOrigin(0, 0);
   }
 
-  private checkGuess() {
-    const guessedNumber = Number(this.guessInput?.value);
-    if (isNaN(guessedNumber)) {
-      this.messageText.setText('Пожалуйста, введите валидное число.');
-    } else if (guessedNumber < this.randomNumber) {
-      this.messageText.setText('Слишком низкое число! Попробуйте еще раз.');
-    } else if (guessedNumber > this.randomNumber) {
-      this.messageText.setText('Слишком высокое число! Попробуйте еще раз.');
-    } else {
-      this.messageText.setText('Поздравляю! Вы угадали число!');
-    }
+  createInputField() {
+    this.inputField = new InputEntity();
+    this.inputField.setInactive();
+    this.inputField.onPressEnter((userInput) => this.onKeyPress(userInput));
+    const inputField = this.add.dom(0, 0, this.inputField.getContainer());
+    inputField.setOrigin(0, 0);
+  }
 
-    if (this.guessInput) {
-      this.guessInput.value = '';
-    }
+  createWindow() {
+    this.window = new WindowEntity();
+
+    this.window.onHide(() => {
+      this.inputField.setActive();
+    });
+
+    this.window.onShow(() => {
+      this.inputField.setInactive();
+      // setTimeout(() => {
+      //   this.window.hide();
+      // }, 2000);
+    });
+
+    // const { height, width } = this.game.config;
+    // const window = this.add.dom(
+    //   Number(width) / 2,
+    //   Number(height) / 2,
+    //   this.window.getContainer(),
+    // );
+    // window.setOrigin(0.5, 0.5);
+
+    const window = this.add.dom(0, 0, this.window.getContainer());
+    window.setOrigin(0, 0);
+  }
+
+  startGame() {
+    const startScenario: StartScenario = new StartScenario(
+      this.console,
+      this.inputField,
+      this.window,
+    );
+    startScenario.exec();
+
+    const app = document.getElementById('app');
+    app?.addEventListener('click', () => {
+      this.inputField.focus();
+      this.window.hide();
+    });
+  }
+
+  onKeyPress(userInput: string) {
+    const commandsScenario: CommandsScenario = new CommandsScenario(
+      this.console,
+      this.inputField,
+      this.window,
+    );
+
+    commandsScenario.exec(userInput);
   }
 }
