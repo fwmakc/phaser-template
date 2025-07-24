@@ -17,6 +17,7 @@ module.exports = {
   },
   ignorePatterns: [
     '*.js',
+    '*.config.ts',
     'vite/*',
     'node_modules/*',
   ],
