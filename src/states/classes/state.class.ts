@@ -3,20 +3,18 @@ import { saveState } from '../helpers/saveState.helper';
 
 export abstract class StateClass<T> {
   protected name: string;
+  protected storageParameters: Array<string>;
 
-  constructor(name: string) {
+  constructor(name: string, storageParameters: Array<string>) {
     this.name = name;
+    this.storageParameters = storageParameters;
   }
 
-  abstract get value(): T;
-
-  abstract set value(userValue: T);
-
   load(): boolean {
-    return loadState(this.name, this);
+    return loadState(this.name, this.storageParameters, this);
   }
 
   save(): boolean {
-    return saveState(this.name, this);
+    return saveState(this.name, this.storageParameters, this);
   }
 }

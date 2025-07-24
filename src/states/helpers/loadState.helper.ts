@@ -1,4 +1,8 @@
-export function loadState(name: string, object: any): boolean {
+export function loadState(
+  name: string,
+  storageParameters: Array<string>,
+  object: any,
+): boolean {
   try {
     const storedValue = localStorage.getItem(name);
 
@@ -6,7 +10,10 @@ export function loadState(name: string, object: any): boolean {
       const parsedValue = JSON.parse(storedValue || '{}') || {};
 
       for (const key in parsedValue) {
-        if (Object.prototype.hasOwnProperty.call(parsedValue, key)) {
+        if (
+          storageParameters.includes(key) &&
+          Object.prototype.hasOwnProperty.call(parsedValue, key)
+        ) {
           (object as any)[key] = parsedValue[key];
         }
       }

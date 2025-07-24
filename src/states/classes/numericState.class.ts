@@ -8,12 +8,12 @@ export class NumericStateClass extends StateClass<number> {
   private minValue: number;
 
   constructor(stateName: string, numericState: NumericStateInterface) {
-    super(stateName);
+    super(stateName, ['currentValue', 'maxValue']);
 
-    this.defaultValue = numericState.default || 0;
     this.currentValue = numericState.current || 0;
-    this.minValue = numericState.min || 0;
+    this.defaultValue = numericState.default || 0;
     this.maxValue = numericState.max || 100;
+    this.minValue = numericState.min || 0;
   }
 
   get value(): number {
@@ -30,16 +30,12 @@ export class NumericStateClass extends StateClass<number> {
     this.currentValue = userValue;
   }
 
-  default(userValue: number): void {
-    this.defaultValue = userValue;
+  get max(): number {
+    return this.maxValue;
   }
 
-  max(userValue: number): void {
+  set max(userValue: number) {
     this.maxValue = userValue;
-  }
-
-  min(userValue: number): void {
-    this.minValue = userValue;
   }
 
   reset(): void {

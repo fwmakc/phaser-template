@@ -1,9 +1,12 @@
-export function saveState(name: string, object: any): boolean {
+export function saveState(
+  name: string,
+  storageParameters: Array<string>,
+  object: any,
+): boolean {
   try {
     const stateObject: { [key: string]: any } = {};
-    const keys = Object.keys(object);
 
-    for (const key of keys) {
+    for (const key of storageParameters) {
       if (Object.prototype.hasOwnProperty.call(object, key)) {
         stateObject[key] = (object as any)[key];
       }
