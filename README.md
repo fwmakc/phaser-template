@@ -63,13 +63,13 @@ yarn cap add android
 Перед сборкой вам просто нужно скопировать его содержимое
 
 ```
-cp -rf app/* android/app/src/main
+cp -rf app/android/* android/app/src/main
 ```
 
 или
 
 ```
-xcopy app\* android\app\src\main /E /H /C /I /Y
+xcopy app\android\* android\app\src\main /E /H /C /I /Y
 ```
 
 Выполняем предварительную сборку
