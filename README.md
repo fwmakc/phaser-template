@@ -2,6 +2,12 @@
 
 ## Быстрый старт
 
+Установка
+
+```
+yarn install
+```
+
 Для тестирования приложения в браузере
 
 ```
@@ -14,19 +20,126 @@ yarn web
 yarn dev
 ```
 
-Билд
+## Билд под десктопные устройства
+
+Выполняем предварительную сборку
 
 ```
-yarn install
 yarn build
+```
+
+Собираем приложение под десктоп
+
+```
 yarn make
 ```
 
 Готовое приложение будет лежать в папке
 
 ```
-/out/template-vite-ts-win32-x64/template-vite-ts.exe
+out/template-vite-ts-win32-x64/template-vite-ts.exe
 ```
+
+## Билд под мобильные устройства
+
+Сборку делаем через capacitor. Полностью все происходит в несколько шагов.
+
+Установим зависимости (уже сделано)
+
+```
+yarn add -D @capacitor/core @capacitor/cli
+```
+
+Добавим в проект (уже сделано)
+
+```
+yarn cap init имя_вашего_проекта com.yourcompany.yourapp --web-dir=dist
+```
+
+Добавляем мобильное устройство
+
+```
+yarn cap add android
+```
+
+Выполняем предварительную сборку
+
+```
+yarn build
+```
+
+Копируем собранный проект для следующего этапа
+
+```
+yarn cap copy
+```
+
+Для дальнейшей сборки под android лучше всего работать в контейнере nodejs из проекта https://github.com/isengine/server.git
+
+Перейдем в папку
+
+```
+cd android
+```
+
+Билд в режиме дебаг:
+
+```
+./gradlew assembleDebug
+```
+
+Готовое приложение будет лежать в папке
+
+```
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Билд в продакшн:
+
+```
+./gradlew assembleRelease
+```
+
+Готовое приложение теперь будет лежать в папке
+
+```
+android/app/build/outputs/apk/release/app-release-unsigned.apk
+```
+
+Дальнейшие действия лучше выполнять из корневой папки проекта
+
+```
+cd ..
+```
+
+Создаем ключ для подписи
+
+```
+keytool -genkey -v -keystore MY_RELEASE_KEY.jks -keyalg RSA -keysize 2048 -validity 10000 -alias MY_KEY_ALIAS
+
+```
+
+Запишите созданные пароли и alias, так как они понадобятся вам в дальнейшем.
+
+Создаем копию приложения
+
+```
+cp android/app/build/outputs/apk/release/app-release-unsigned.apk android/app/build/outputs/apk/release/app-release.apk
+```
+
+Подписываем приложение
+
+```
+apksigner sign --ks MY_RELEASE_KEY.jks --ks-key-alias MY_KEY_ALIAS --ks-pass pass:YOUR_KEYSTORE_PASSWORD --key-pass pass:YOUR_KEY_PASSWORD android/app/build/outputs/apk/release/app-release.apk
+```
+
+Можно проверить подпись
+
+```
+apksigner verify android/app/build/outputs/apk/release/app-release.apk
+```
+
+Если APK подписан правильно, вы не увидите никаких ошибок.
 
 # Phaser
 
