@@ -1,4 +1,5 @@
 import { StartScenario } from '../../../scenarios/start.scenario';
+import { PlayerState } from '../../../states/player.state';
 
 export function startGame(scene: any) {
   const startScenario: StartScenario = new StartScenario({
@@ -13,4 +14,7 @@ export function startGame(scene: any) {
     scene.inputSection.focus();
     scene.windowSection.hide();
   });
+
+  const player = new PlayerState();
+  console.log('-- player', player);
 }
