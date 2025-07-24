@@ -1,29 +1,23 @@
 import Phaser from 'phaser';
-import { ConsoleEntity } from '../entities/console.entity';
-import { InputEntity } from '../entities/input.entity';
-import { WindowEntity } from '../entities/window.entity';
-
-import { createConsoleSection } from './game/helpers/createConsoleSection.helper';
-import { createInputSection } from './game/helpers/createInputSection.helper';
-import { createWindowSection } from './game/helpers/createWindowSection.helper';
-import { startGame } from './game/helpers/startGame.helper';
 
 export class GameScene extends Phaser.Scene {
-  consoleSection!: ConsoleEntity;
-  inputSection!: InputEntity;
-  windowSection!: WindowEntity;
-
   constructor() {
     super({ key: 'GameScene' });
   }
 
-  preload() {}
+  preload() {
+    this.load.image('logo', 'assets/logo.png');
+  }
 
   create() {
-    createConsoleSection(this);
-    createInputSection(this);
-    createWindowSection(this);
-    startGame(this);
+    this.add
+      .text(0, 0, 'PHASER TEMPLATE', { fontSize: '32px', color: '#ffffff' })
+      .setOrigin(0.5, 0.5)
+      .setPosition(this.cameras.main.centerX, this.cameras.main.centerY + 100);
+
+    this.add
+      .image(this.cameras.main.centerX, this.cameras.main.centerY, 'logo')
+      .setOrigin(0.5, 0.5);
   }
 
   update() {}
