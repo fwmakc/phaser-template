@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">template-vite-ts</string>
+    <string name="title_activity_main">template-vite-ts</string>
+    <string name="package_name">com.example.templatevitets</string>
+    <string name="custom_url_scheme">com.example.templatevitets</string>
+</resources>
