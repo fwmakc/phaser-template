@@ -1,4 +1,4 @@
-import { ScenarioClass } from '../classes/scenario.class';
+import { ScenarioClass } from './classes/scenario.class';
 
 export class StartScenario extends ScenarioClass {
   exec() {

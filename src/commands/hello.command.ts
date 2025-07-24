@@ -1,5 +1,6 @@
-import { ConsoleEntity } from '../entities/console.entity';
+import { CommandEntitiesInterface } from './interfaces/commandEntities.interface';
 
-export function helloCommand(console: ConsoleEntity) {
-  console.print('Здравствуйте! Как я могу помочь вам?');
+export function helloCommand(entities: CommandEntitiesInterface) {
+  const { console } = entities;
+  console?.print('Здравствуйте! Как я могу помочь вам?');
 }

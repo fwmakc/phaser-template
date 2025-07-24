@@ -1,4 +1,4 @@
-import { EntityClass } from '../classes/entity.class';
+import { EntityClass } from './classes/entity.class';
 
 export class ConsoleEntity extends EntityClass {
   private console!: HTMLElement;

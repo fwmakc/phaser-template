@@ -1,4 +1,4 @@
-import { ScenarioClass } from '../classes/scenario.class';
+import { ScenarioClass } from './classes/scenario.class';
 
 import { helloCommand } from '../commands/hello.command';
 import { unknownCommand } from '../commands/unknown.command';
@@ -17,9 +17,9 @@ export class CommandsScenario extends ScenarioClass {
     this.console.append('> ').color('yellow').append(userInput).end();
 
     if (userInput === 'привет') {
-      helloCommand(this.console);
+      helloCommand({ console: this.console });
     } else {
-      unknownCommand(this.window);
+      unknownCommand({ window: this.window });
       return;
     }
 
