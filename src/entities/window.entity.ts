@@ -3,6 +3,7 @@ import { EntityClass } from './classes/entity.class';
 export class WindowEntity extends EntityClass {
   private window!: HTMLElement;
   private fakeInput!: HTMLInputElement;
+  private active!: boolean;
 
   private hideCallback!: () => void;
   private showCallback!: () => void;
@@ -57,7 +58,10 @@ export class WindowEntity extends EntityClass {
     );
     this.fakeInput.type = 'text';
 
-    this.fakeInput.addEventListener('keypress', () => {
+    this.fakeInput.addEventListener('keypress', (event: KeyboardEvent) => {
+      if (event.key !== 'Enter') {
+        return;
+      }
       this.hide();
     });
 
@@ -69,13 +73,19 @@ export class WindowEntity extends EntityClass {
     this.window.style.backgroundColor = bgcolor || 'transparent';
   }
 
+  isActive() {
+    return this.active;
+  }
+
   hide() {
     this.fakeInput.blur();
+    this.fakeInput.value = '';
     this.fakeInput.disabled = true;
-    this.setColors();
     this.window.innerHTML = '';
     this.window.style.visibility = 'hidden';
+    this.setColors();
     this.hideCallback();
+    this.active = false;
   }
 
   onShow(showCallback: () => void) {
@@ -87,11 +97,13 @@ export class WindowEntity extends EntityClass {
   }
 
   show(content = '', color = '', bgcolor = '') {
+    this.active = true;
     this.showCallback();
     this.setColors(color, bgcolor);
     this.window.innerHTML = content;
     this.window.style.visibility = 'visible';
     this.fakeInput.disabled = false;
+    this.fakeInput.value = '';
     this.fakeInput.focus();
   }
 }

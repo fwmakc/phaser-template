@@ -3,7 +3,7 @@ import { InputEntity } from '../../entities/input.entity';
 import { WindowEntity } from '../../entities/window.entity';
 
 export interface CommandEntitiesInterface {
-  console?: ConsoleEntity;
-  input?: InputEntity;
-  window?: WindowEntity;
+  console: ConsoleEntity;
+  input: InputEntity;
+  window: WindowEntity;
 }

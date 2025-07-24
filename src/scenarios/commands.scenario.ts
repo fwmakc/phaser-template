@@ -1,7 +1,9 @@
 import { ScenarioClass } from './classes/scenario.class';
 
-import { helloCommand } from '../commands/hello.command';
-import { unknownCommand } from '../commands/unknown.command';
+import { CommandClass } from '../commands/classes/command.class';
+// import { setCommandClass } from '../commands/helpers/setCommandClass.helper';
+// import { setCommandClassByPatterns } from '../commands/helpers/setCommandClassByPatterns.helper';
+import { setCommandClassByPatternsArray } from '../commands/helpers/setCommandClassByPatternsArray.helper';
 
 export class CommandsScenario extends ScenarioClass {
   exec(userInput: string) {
@@ -11,18 +13,16 @@ export class CommandsScenario extends ScenarioClass {
       return;
     }
 
-    console.log(this.console.getStatus());
-    // this.console.clear();
-    this.input.setInactive();
-    this.console.append('> ').color('yellow').append(userInput).end();
+    // const CurrentCommand = setCommandClass(userInput);
+    // const CurrentCommand = setCommandClassByPatterns(userInput);
+    const CurrentCommand = setCommandClassByPatternsArray(userInput);
 
-    if (userInput === 'привет') {
-      helloCommand({ console: this.console });
-    } else {
-      unknownCommand({ window: this.window });
-      return;
-    }
+    const command: CommandClass = new CurrentCommand({
+      console: this.console,
+      input: this.input,
+      window: this.window,
+    });
 
-    this.input.setActive();
+    command.exec(userInput);
   }
 }

@@ -1,10 +1,16 @@
-import { CommandEntitiesInterface } from './interfaces/commandEntities.interface';
+import { CommandClass } from './classes/command.class';
 
-export function unknownCommand(entities: CommandEntitiesInterface) {
-  const { window } = entities;
-  window?.show(
-    'Неизвестная команда'.trim().replace(/\n +/g, '\n').replace(/ +\n/g, '\n'),
-    'white',
-    '#700',
-  );
+export class UnknownCommand extends CommandClass {
+  exec(userInput: string) {
+    this.input.setInactive();
+
+    this.window.show(
+      `Неизвестная команда "${userInput}"`
+        .trim()
+        .replace(/\n +/g, '\n')
+        .replace(/ +\n/g, '\n'),
+      'white',
+      '#700',
+    );
+  }
 }
