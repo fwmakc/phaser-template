@@ -19,8 +19,8 @@ export function startGame(scene: any) {
   const player = new PlayerCharacter();
   // scene.characters.set('player', player);
 
-  player.health.value += 10;
   player.health.max += 1;
+  player.health.value += 10;
 
   player.health.save();
 

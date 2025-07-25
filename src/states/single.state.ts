@@ -24,14 +24,14 @@ export class SingleState extends StateTemplate<SignleInterface> {
   load(): boolean {
     return this.storage.load({
       parameters: ['currentValue'],
-      state: this,
+      state: this.state,
     });
   }
 
   save(): boolean {
     return this.storage.save({
       parameters: ['currentValue'],
-      state: this,
+      state: this.state,
     });
   }
 }

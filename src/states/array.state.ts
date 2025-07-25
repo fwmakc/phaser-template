@@ -52,14 +52,14 @@ export class ArrayState extends StateTemplate<ArrayInterface> {
   load(): boolean {
     return this.storage.load({
       parameters: ['currentList', 'maxLength'],
-      state: this,
+      state: this.state,
     });
   }
 
   save(): boolean {
     return this.storage.save({
       parameters: ['currentList', 'maxLength'],
-      state: this,
+      state: this.state,
     });
   }
 }

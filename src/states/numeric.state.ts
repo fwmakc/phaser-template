@@ -36,14 +36,14 @@ export class NumericState extends StateTemplate<NumericInterface> {
   load(): boolean {
     return this.storage.load({
       parameters: ['currentValue', 'maxValue'],
-      state: this,
+      state: this.state,
     });
   }
 
   save(): boolean {
     return this.storage.save({
       parameters: ['currentValue', 'maxValue'],
-      state: this,
+      state: this.state,
     });
   }
 }
