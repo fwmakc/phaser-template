@@ -153,6 +153,43 @@ apksigner verify android/app/build/outputs/apk/release/app-release.apk
 
 Если APK подписан правильно, вы не увидите никаких ошибок.
 
+# Коллекции
+
+1. Создание Map:
+
+const map = new Map<number, string>();
+
+2. Добавление элементов:
+
+map.set(1, 'Value 1');
+map.set(2, 'Value 2');
+
+3. Получение значения по ключу:
+
+const value = map.get(1); // 'Value 1'
+
+4. Проверка наличия ключа:
+
+const hasKey = map.has(1); // true
+
+5. Удаление элемента:
+
+map.delete(2);
+
+6. Получение размера Map:
+
+const size = map.size; // количество элементов в Map
+
+7. Очистка Map:
+
+map.clear(); // удаляет все элементы
+
+8. Итерация по элементам:
+
+for (let [key, value] of map) {
+    console.log(key, value);
+}
+
 # Phaser
 
 Проект создан на основе

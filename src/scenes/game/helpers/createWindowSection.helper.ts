@@ -1,7 +1,7 @@
-import { WindowEntity } from '../../../entities/window.entity';
+import { WindowSection } from '../../../sections/window.section';
 
 export function createWindowSection(scene: any) {
-  scene.windowSection = new WindowEntity();
+  scene.windowSection = new WindowSection();
 
   scene.windowSection.onHide(() => {
     scene.inputSection.setActive();

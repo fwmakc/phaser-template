@@ -16,6 +16,17 @@ export class NumericStateClass extends StateClass<number> {
     this.minValue = numericState.min || 0;
   }
 
+  get max(): number {
+    return this.maxValue;
+  }
+
+  set max(userValue: number) {
+    this.maxValue = userValue;
+    if (this.currentValue > this.maxValue) {
+      this.currentValue = this.maxValue;
+    }
+  }
+
   get value(): number {
     return this.currentValue;
   }
@@ -28,14 +39,6 @@ export class NumericStateClass extends StateClass<number> {
       userValue = this.maxValue;
     }
     this.currentValue = userValue;
-  }
-
-  get max(): number {
-    return this.maxValue;
-  }
-
-  set max(userValue: number) {
-    this.maxValue = userValue;
   }
 
   reset(): void {

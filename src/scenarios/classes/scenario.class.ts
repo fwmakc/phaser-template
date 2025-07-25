@@ -1,17 +1,17 @@
-import { ConsoleEntity } from '../../entities/console.entity';
-import { InputEntity } from '../../entities/input.entity';
-import { WindowEntity } from '../../entities/window.entity';
-import { ScenarioEntitiesInterface } from '../interfaces/scenarioEntities.interface';
+import { ConsoleSection } from '../../sections/console.section';
+import { InputSection } from '../../sections/input.section';
+import { WindowSection } from '../../sections/window.section';
+import { ScenarioSectionsInterface } from '../interfaces/scenarioSections.interface';
 
 export abstract class ScenarioClass {
-  protected console: ConsoleEntity;
-  protected input: InputEntity;
-  protected window: WindowEntity;
+  protected console: ConsoleSection;
+  protected input: InputSection;
+  protected window: WindowSection;
 
-  constructor(entities: ScenarioEntitiesInterface) {
-    this.console = entities.console;
-    this.input = entities.input;
-    this.window = entities.window;
+  constructor(sections: ScenarioSectionsInterface) {
+    this.console = sections.console;
+    this.input = sections.input;
+    this.window = sections.window;
   }
 
   abstract exec(args: any): void;

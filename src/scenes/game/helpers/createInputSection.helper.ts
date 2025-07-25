@@ -1,8 +1,8 @@
-import { InputEntity } from '../../../entities/input.entity';
 import { CommandsScenario } from '../../../scenarios/commands.scenario';
+import { InputSection } from '../../../sections/input.section';
 
 export function createInputSection(scene: any) {
-  scene.inputSection = new InputEntity();
+  scene.inputSection = new InputSection();
 
   scene.inputSection.setInactive();
 

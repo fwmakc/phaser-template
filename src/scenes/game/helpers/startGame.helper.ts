@@ -2,6 +2,7 @@ import { StartScenario } from '../../../scenarios/start.scenario';
 import { PlayerState } from '../../../states/player.state';
 
 export function startGame(scene: any) {
+  console.log('-- scene', scene);
   const startScenario: StartScenario = new StartScenario({
     console: scene.consoleSection,
     input: scene.inputSection,
@@ -16,6 +17,8 @@ export function startGame(scene: any) {
   });
 
   const player = new PlayerState();
+  // scene.characters.set('player', player);
+
   player.health.value += 10;
   player.health.max += 1;
 

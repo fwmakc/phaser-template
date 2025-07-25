@@ -1,17 +1,23 @@
 import Phaser from 'phaser';
-import { ConsoleEntity } from '../entities/console.entity';
-import { InputEntity } from '../entities/input.entity';
-import { WindowEntity } from '../entities/window.entity';
+import { ConsoleSection } from '../sections/console.section';
+import { InputSection } from '../sections/input.section';
+import { WindowSection } from '../sections/window.section';
 
 import { createConsoleSection } from './game/helpers/createConsoleSection.helper';
 import { createInputSection } from './game/helpers/createInputSection.helper';
 import { createWindowSection } from './game/helpers/createWindowSection.helper';
 import { startGame } from './game/helpers/startGame.helper';
+import { updateGame } from './game/helpers/updateGame.helper';
+import { CharacterInterface } from '../characters/interfaces/character.interface';
+import { ThingInterface } from '../things/interfaces/thing.interface';
+import { PlayerState } from '../states/player.state';
 
 export class GameScene extends Phaser.Scene {
-  consoleSection!: ConsoleEntity;
-  inputSection!: InputEntity;
-  windowSection!: WindowEntity;
+  consoleSection: ConsoleSection;
+  inputSection: InputSection;
+  windowSection: WindowSection;
+  things: Map<string, ThingInterface>;
+  characters: Map<string, CharacterInterface>;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -20,11 +26,22 @@ export class GameScene extends Phaser.Scene {
   preload() {}
 
   create() {
+    this.things = new Map<string, CharacterInterface>();
+
+    // const player = new PlayerState();
+    // this.characters.set('player', player);
+
+    // const map = new Map<number, string>();
+    // map.set('1', 'Value 1');
+    // map.set('2', 'Value 2');
+
     createConsoleSection(this);
     createInputSection(this);
     createWindowSection(this);
     startGame(this);
   }
 
-  update() {}
+  update(time: number) {
+    updateGame(this, time);
+  }
 }

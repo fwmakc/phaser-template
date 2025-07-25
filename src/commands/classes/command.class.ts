@@ -1,17 +1,17 @@
-import { ConsoleEntity } from '../../entities/console.entity';
-import { InputEntity } from '../../entities/input.entity';
-import { WindowEntity } from '../../entities/window.entity';
-import { CommandEntitiesInterface } from '../interfaces/commandEntities.interface';
+import { ConsoleSection } from '../../sections/console.section';
+import { InputSection } from '../../sections/input.section';
+import { WindowSection } from '../../sections/window.section';
+import { CommandSectionsInterface } from '../interfaces/commandSections.interface';
 
 export abstract class CommandClass {
-  protected console: ConsoleEntity;
-  protected input: InputEntity;
-  protected window: WindowEntity;
+  protected console: ConsoleSection;
+  protected input: InputSection;
+  protected window: WindowSection;
 
-  constructor(entities: CommandEntitiesInterface) {
-    this.console = entities.console;
-    this.input = entities.input;
-    this.window = entities.window;
+  constructor(sections: CommandSectionsInterface) {
+    this.console = sections.console;
+    this.input = sections.input;
+    this.window = sections.window;
   }
 
   abstract exec(args: any): void;

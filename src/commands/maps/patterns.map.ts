@@ -1,12 +1,12 @@
 import { CommandClass } from '../classes/command.class';
-import { CommandEntitiesInterface } from '../interfaces/commandEntities.interface';
+import { CommandSectionsInterface } from '../interfaces/commandSections.interface';
 
 import { HelloCommand } from '../hello.command';
 import { NumberCommand } from '../number.command';
 
 export const patternsMap: Array<{
   pattern: RegExp;
-  command: new (entities: CommandEntitiesInterface) => CommandClass;
+  command: new (sections: CommandSectionsInterface) => CommandClass;
 }> = [
   {
     pattern: /^пр(и|е)в(е(т|д).*)?$/iu,
