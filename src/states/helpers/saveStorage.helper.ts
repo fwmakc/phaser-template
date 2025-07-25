@@ -1,14 +1,14 @@
 export function saveStorage(
   name: string,
-  storageParameters: Array<string>,
-  object: any,
+  parameters: Array<string>,
+  state: any,
 ): boolean {
   try {
     const stateObject: { [key: string]: any } = {};
 
-    for (const key of storageParameters) {
-      if (Object.prototype.hasOwnProperty.call(object, key)) {
-        stateObject[key] = (object as any)[key];
+    for (const key of parameters) {
+      if (Object.prototype.hasOwnProperty.call(state, key)) {
+        stateObject[key] = (state as any)[key];
       }
     }
 

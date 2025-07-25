@@ -1,9 +1,9 @@
-import { NumericModel } from '../../states/models/numeric.model';
+import { NumericState } from '../../states/numeric.state';
 import { CharacterInterface } from '../interfaces/character.interface';
 
 export class CharacterModel implements CharacterInterface {
-  health: NumericModel;
-  power: NumericModel;
+  health: NumericState;
+  power: NumericState;
 
   constructor() {}
 }

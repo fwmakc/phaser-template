@@ -1,5 +1,5 @@
 import { StartScenario } from '../../../scenarios/start.scenario';
-import { PlayerState } from '../../../states/player.state';
+import { PlayerCharacter } from '../../../characters/player.character';
 
 export function startGame(scene: any) {
   console.log('-- scene', scene);
@@ -16,7 +16,7 @@ export function startGame(scene: any) {
     scene.windowSection.hide();
   });
 
-  const player = new PlayerState();
+  const player = new PlayerCharacter();
   // scene.characters.set('player', player);
 
   player.health.value += 10;

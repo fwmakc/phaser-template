@@ -1,10 +1,9 @@
-import { PlayerState } from '../../../states/player.state';
+import { PlayerCharacter } from '../../../characters/player.character';
 
 let lastUpdate = 0;
 
 export function updateGame(scene: any, time: number) {
-  const player = new PlayerState();
-  // const player: PlayerState = scene.characters.get('player');
+  const player: PlayerCharacter = scene.characters.get('player');
 
   if (time - lastUpdate >= 2000) {
     // player.health.value -= 101;

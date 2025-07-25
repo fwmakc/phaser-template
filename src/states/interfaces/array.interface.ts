@@ -1,5 +1,5 @@
 export interface ArrayInterface {
-  allow: Array<string>;
-  current: Array<string>;
-  max: number;
+  allowList: Array<string>;
+  currentList: Array<string>;
+  maxLength: number;
 }

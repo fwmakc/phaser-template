@@ -1,6 +1,6 @@
-import { ArrayInterface } from '../interfaces/array.interface';
+import { ArrayInterface } from '../../states/interfaces/array.interface';
 
-const allow = [
+const allowList = [
   'болезнь',
   'отравление',
   'голод',
@@ -11,7 +11,7 @@ const allow = [
 ];
 
 export const status: ArrayInterface = {
-  allow,
-  current: [],
-  max: 3,
+  allowList,
+  currentList: [],
+  maxLength: 3,
 };

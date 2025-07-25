@@ -1,7 +1,7 @@
 export function loadStorage(
   name: string,
-  storageParameters: Array<string>,
-  object: any,
+  parameters: Array<string>,
+  state: any,
 ): boolean {
   try {
     const storedValue = localStorage.getItem(name);
@@ -11,10 +11,10 @@ export function loadStorage(
 
       for (const key in parsedValue) {
         if (
-          storageParameters.includes(key) &&
+          parameters.includes(key) &&
           Object.prototype.hasOwnProperty.call(parsedValue, key)
         ) {
-          (object as any)[key] = parsedValue[key];
+          (state as any)[key] = parsedValue[key];
         }
       }
     }

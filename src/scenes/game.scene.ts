@@ -10,7 +10,7 @@ import { startGame } from './game/helpers/startGame.helper';
 import { updateGame } from './game/helpers/updateGame.helper';
 import { CharacterInterface } from '../characters/interfaces/character.interface';
 import { ThingInterface } from '../things/interfaces/thing.interface';
-import { PlayerState } from '../states/player.state';
+// import { PlayerCharacter } from '../characters/player.character';
 
 export class GameScene extends Phaser.Scene {
   consoleSection: ConsoleSection;
@@ -28,7 +28,7 @@ export class GameScene extends Phaser.Scene {
   create() {
     this.things = new Map<string, CharacterInterface>();
 
-    // const player = new PlayerState();
+    // const player = new PlayerCharacter();
     // this.characters.set('player', player);
 
     // const map = new Map<number, string>();
@@ -42,6 +42,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   update(time: number) {
-    updateGame(this, time);
+    if (!time) {
+      updateGame(this, time);
+    }
   }
 }

@@ -1,5 +1,5 @@
 export interface SignleInterface {
-  allow: Array<string>;
-  current: string;
-  default: string;
+  allowList: Array<string>;
+  currentValue: string;
+  defaultValue: string;
 }

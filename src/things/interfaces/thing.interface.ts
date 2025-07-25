@@ -1,5 +1,5 @@
-import { NumericModel } from '../../states/models/numeric.model';
+import { NumericState } from '../../states/numeric.state';
 
 export interface ThingInterface {
-  health: NumericModel;
+  health: NumericState;
 }
