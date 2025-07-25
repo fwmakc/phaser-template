@@ -1,4 +1,4 @@
-export class DomClass<T extends HTMLElement> {
+export class DomModel<T extends HTMLElement> {
   private element: T;
 
   constructor(tag = 'div') {
@@ -9,8 +9,8 @@ export class DomClass<T extends HTMLElement> {
     this.element.addEventListener(type, callback);
   }
 
-  append(domClass: DomClass<T>) {
-    const element = domClass.get();
+  append(dom: DomModel<T>) {
+    const element = dom.get();
     this.element.append(element);
   }
 

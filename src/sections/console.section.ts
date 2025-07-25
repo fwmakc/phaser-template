@@ -1,25 +1,19 @@
-import { ContainerClass } from './classes/container.class';
-import { DomClass } from './classes/dom.class';
-import { SectionInterface } from './interfaces/section.interface';
+import { ContainerModel } from './models/container.model';
+import { DomModel } from './models/dom.model';
+import { SectionTemplate } from './templates/section.template';
 
-export class ConsoleSection extends SectionInterface {
-  protected container: ContainerClass;
-  protected console: DomClass<HTMLElement>;
+export class ConsoleSection extends SectionTemplate {
+  protected container = new ContainerModel();
+  protected console: DomModel<HTMLElement>;
   protected textColor: string;
 
   constructor() {
     super();
-
-    this.createContainer();
     this.createConsole();
   }
 
-  protected createContainer(): void {
-    this.container = new ContainerClass();
-  }
-
   protected createConsole(): void {
-    this.console = new DomClass();
+    this.console = new DomModel();
     this.console.setCss(`
       background-color: transparent;
       color: #fff;
@@ -34,7 +28,7 @@ export class ConsoleSection extends SectionInterface {
   }
 
   append(text = ''): ConsoleSection {
-    const span = new DomClass('span');
+    const span = new DomModel('span');
     if (this.textColor) {
       span.setStyle('color', this.textColor);
     }
@@ -44,7 +38,7 @@ export class ConsoleSection extends SectionInterface {
   }
 
   br(): ConsoleSection {
-    const br = new DomClass('br');
+    const br = new DomModel('br');
     this.console.append(br);
     this.console.get().scrollTop = this.console.get().scrollHeight;
     return this;

@@ -1,6 +1,6 @@
-import { NumericStateClass } from '../../states/classes/numericState.class';
+import { NumericModel } from '../../states/models/numeric.model';
 
 export interface CharacterInterface {
-  health: NumericStateClass;
-  power: NumericStateClass;
+  health: NumericModel;
+  power: NumericModel;
 }

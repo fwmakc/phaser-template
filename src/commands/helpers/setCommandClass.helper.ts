@@ -1,4 +1,4 @@
-import { commandsMap } from '../maps/commands.map';
+import { commands } from '../datasets/commands.dataset';
 
 import { UnknownCommand } from '../unknown.command';
 import { NumberCommand } from '../number.command';
@@ -12,8 +12,8 @@ export function setCommandClass(userInput: string) {
   const userInputConverted = convertEngToRus(userInput);
 
   return (
-    commandsMap.get(userInput) ||
-    commandsMap.get(userInputConverted) ||
+    commands.get(userInput) ||
+    commands.get(userInputConverted) ||
     UnknownCommand
   );
 }

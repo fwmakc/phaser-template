@@ -1,13 +1,13 @@
-import { NumericStateInterface } from '../interfaces/numericState.interface';
-import { StateClass } from './state.class';
+import { NumericInterface } from '../interfaces/numeric.interface';
+import { StorageModel } from './storage.model';
 
-export class NumericStateClass extends StateClass<number> {
+export class NumericModel extends StorageModel<number> {
   private currentValue: number;
   private defaultValue: number;
   private maxValue: number;
   private minValue: number;
 
-  constructor(stateName: string, numericState: NumericStateInterface) {
+  constructor(stateName: string, numericState: NumericInterface) {
     super(stateName, ['currentValue', 'maxValue']);
 
     this.currentValue = numericState.current || 0;

@@ -1,10 +1,10 @@
-import { DomClass } from './dom.class';
+import { DomModel } from './dom.model';
 
-export class ContainerClass {
-  protected container: DomClass<HTMLElement>;
+export class ContainerModel {
+  protected container: DomModel<HTMLElement>;
 
   constructor() {
-    this.container = new DomClass('section');
+    this.container = new DomModel('section');
     this.container.setCss(`
       background-color: transparent;
       height: 100%;
@@ -16,8 +16,8 @@ export class ContainerClass {
     `);
   }
 
-  append(domClass: DomClass<HTMLElement>) {
-    this.container.append(domClass);
+  append(dom: DomModel<HTMLElement>) {
+    this.container.append(dom);
   }
 
   get(): HTMLElement {

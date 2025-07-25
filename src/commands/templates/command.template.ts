@@ -1,9 +1,10 @@
 import { ConsoleSection } from '../../sections/console.section';
 import { InputSection } from '../../sections/input.section';
 import { WindowSection } from '../../sections/window.section';
+import { CommandInterface } from '../interfaces/command.interface';
 import { CommandSectionsInterface } from '../interfaces/commandSections.interface';
 
-export abstract class CommandClass {
+export abstract class CommandTemplate implements CommandInterface {
   protected console: ConsoleSection;
   protected input: InputSection;
   protected window: WindowSection;

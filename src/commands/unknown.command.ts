@@ -1,6 +1,6 @@
-import { CommandClass } from './classes/command.class';
+import { CommandTemplate } from './templates/command.template';
 
-export class UnknownCommand extends CommandClass {
+export class UnknownCommand extends CommandTemplate {
   exec(userInput: string) {
     this.input.setInactive();
 

@@ -1,11 +1,11 @@
-import { ScenarioClass } from './classes/scenario.class';
+import { ScenarioTemplate } from './templates/scenario.template';
+import { CommandInterface } from '../commands/interfaces/command.interface';
 
-import { CommandClass } from '../commands/classes/command.class';
 // import { setCommandClass } from '../commands/helpers/setCommandClass.helper';
 // import { setCommandClassByPatterns } from '../commands/helpers/setCommandClassByPatterns.helper';
 import { setCommandClassByPatternsArray } from '../commands/helpers/setCommandClassByPatternsArray.helper';
 
-export class CommandsScenario extends ScenarioClass {
+export class CommandsScenario extends ScenarioTemplate {
   exec(userInput: string) {
     userInput = userInput.toLowerCase().trim();
 
@@ -17,7 +17,7 @@ export class CommandsScenario extends ScenarioClass {
     // const CurrentCommand = setCommandClassByPatterns(userInput);
     const CurrentCommand = setCommandClassByPatternsArray(userInput);
 
-    const command: CommandClass = new CurrentCommand({
+    const command: CommandInterface = new CurrentCommand({
       console: this.console,
       input: this.input,
       window: this.window,

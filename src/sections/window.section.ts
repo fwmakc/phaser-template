@@ -1,11 +1,11 @@
-import { ContainerClass } from './classes/container.class';
-import { DomClass } from './classes/dom.class';
-import { SectionInterface } from './interfaces/section.interface';
+import { ContainerModel } from './models/container.model';
+import { DomModel } from './models/dom.model';
+import { SectionTemplate } from './templates/section.template';
 
-export class WindowSection extends SectionInterface {
-  protected container: ContainerClass;
-  protected window: DomClass<HTMLElement>;
-  protected fakeInput: DomClass<HTMLInputElement>;
+export class WindowSection extends SectionTemplate {
+  protected container = new ContainerModel();
+  protected window: DomModel<HTMLElement>;
+  protected fakeInput: DomModel<HTMLInputElement>;
   protected active: boolean;
 
   private hideCallback: () => void;
@@ -25,11 +25,11 @@ export class WindowSection extends SectionInterface {
   }
 
   protected createContainer(): void {
-    this.container = new ContainerClass();
+    this.container = new ContainerModel();
   }
 
   protected createWindow(): void {
-    this.window = new DomClass();
+    this.window = new DomModel();
     this.window.setCss(`
       font-family: monospace;
       font-size: 14px;
@@ -50,7 +50,7 @@ export class WindowSection extends SectionInterface {
   }
 
   private createFakeInput(): void {
-    this.fakeInput = new DomClass('input');
+    this.fakeInput = new DomModel('input');
     this.fakeInput.setCss(`
       background: transparent;
       border: none;

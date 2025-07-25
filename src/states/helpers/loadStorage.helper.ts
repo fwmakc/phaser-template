@@ -1,4 +1,4 @@
-export function loadState(
+export function loadStorage(
   name: string,
   storageParameters: Array<string>,
   object: any,

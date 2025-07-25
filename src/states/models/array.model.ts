@@ -1,12 +1,12 @@
-import { ArrayStateInterface } from '../interfaces/arrayState.interface';
-import { StateClass } from './state.class';
+import { ArrayInterface } from '../interfaces/array.interface';
+import { StorageModel } from './storage.model';
 
-export class ArrayStateClass extends StateClass<string[]> {
+export class ArrayModel extends StorageModel<string[]> {
   private currentList: Array<string>;
   private allowList: Array<string>;
   private maxLength: number;
 
-  constructor(stateName: string, arrayState: ArrayStateInterface) {
+  constructor(stateName: string, arrayState: ArrayInterface) {
     super(stateName, ['currentList', 'maxLength']);
 
     this.currentList = arrayState.current || [];

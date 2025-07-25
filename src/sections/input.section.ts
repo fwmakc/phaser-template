@@ -1,26 +1,21 @@
-import { ContainerClass } from './classes/container.class';
-import { DomClass } from './classes/dom.class';
-import { SectionInterface } from './interfaces/section.interface';
+import { ContainerModel } from './models/container.model';
+import { DomModel } from './models/dom.model';
+import { SectionTemplate } from './templates/section.template';
 
-export class InputSection extends SectionInterface {
-  protected container: ContainerClass;
-  protected input: DomClass<HTMLInputElement>;
-  protected wrapper: DomClass<HTMLElement>;
+export class InputSection extends SectionTemplate {
+  protected container = new ContainerModel();
+  protected input: DomModel<HTMLInputElement>;
+  protected wrapper: DomModel<HTMLElement>;
 
   constructor() {
     super();
 
-    this.createContainer();
     this.createInput();
     this.createWrapper();
   }
 
-  protected createContainer(): void {
-    this.container = new ContainerClass();
-  }
-
   protected createInput(): void {
-    this.input = new DomClass('input');
+    this.input = new DomModel('input');
     this.input.setCss(`
       background-color: transparent;
       border: none;
@@ -36,7 +31,7 @@ export class InputSection extends SectionInterface {
   }
 
   protected createWrapper(): void {
-    this.wrapper = new DomClass();
+    this.wrapper = new DomModel();
     this.wrapper.setCss(`
       background-color: transparent;
       color: #fff;

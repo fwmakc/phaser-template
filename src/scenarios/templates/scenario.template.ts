@@ -1,9 +1,11 @@
+import { ScenarioInterface } from '../interfaces/scenario.interface';
+import { ScenarioSectionsInterface } from '../interfaces/scenarioSections.interface';
+
 import { ConsoleSection } from '../../sections/console.section';
 import { InputSection } from '../../sections/input.section';
 import { WindowSection } from '../../sections/window.section';
-import { ScenarioSectionsInterface } from '../interfaces/scenarioSections.interface';
 
-export abstract class ScenarioClass {
+export abstract class ScenarioTemplate implements ScenarioInterface {
   protected console: ConsoleSection;
   protected input: InputSection;
   protected window: WindowSection;

@@ -1,4 +1,4 @@
-import { ArrayStateInterface } from '../interfaces/arrayState.interface';
+import { ArrayInterface } from '../interfaces/array.interface';
 
 const allow = [
   'болезнь',
@@ -10,7 +10,7 @@ const allow = [
   'ранение',
 ];
 
-export const statusMap: ArrayStateInterface = {
+export const status: ArrayInterface = {
   allow,
   current: [],
   max: 3,

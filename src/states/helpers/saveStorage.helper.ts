@@ -1,4 +1,4 @@
-export function saveState(
+export function saveStorage(
   name: string,
   storageParameters: Array<string>,
   object: any,

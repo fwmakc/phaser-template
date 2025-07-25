@@ -1,6 +1,6 @@
-import { ScenarioClass } from './classes/scenario.class';
+import { ScenarioTemplate } from './templates/scenario.template';
 
-export class StartScenario extends ScenarioClass {
+export class StartScenario extends ScenarioTemplate {
   exec() {
     const texts = [
       'Я тестовая программа!',

@@ -1,28 +1,28 @@
-import { ArrayStateClass } from './classes/arrayState.class';
-import { NumericStateClass } from './classes/numericState.class';
-import { SingleStateClass } from './classes/singleState.class';
-import { healthMap } from './maps/health.map';
-import { manaMap } from './maps/mana.map';
-import { statusMap } from './maps/status.map';
-import { walkMap } from './maps/walk.map';
+import { ArrayModel } from './models/array.model';
+import { NumericModel } from './models/numeric.model';
+import { SingleModel } from './models/single.model';
+import { health } from './datasets/health.dataset';
+import { mana } from './datasets/mana.dataset';
+import { status } from './datasets/status.dataset';
+import { walk } from './datasets/walk.dataset';
 
 export class PlayerState {
-  health: NumericStateClass;
-  mana: NumericStateClass;
-  status: ArrayStateClass;
-  walk: SingleStateClass;
+  health: NumericModel;
+  mana: NumericModel;
+  status: ArrayModel;
+  walk: SingleModel;
 
   constructor() {
-    this.health = new NumericStateClass('player-health', healthMap);
+    this.health = new NumericModel('player-health', health);
     this.health.load();
 
-    this.mana = new NumericStateClass('player-mana', manaMap);
+    this.mana = new NumericModel('player-mana', mana);
     this.mana.load();
 
-    this.status = new ArrayStateClass('player-status', statusMap);
+    this.status = new ArrayModel('player-status', status);
     this.status.load();
 
-    this.walk = new SingleStateClass('player-walk', walkMap);
+    this.walk = new SingleModel('player-walk', walk);
     this.walk.load();
   }
 }

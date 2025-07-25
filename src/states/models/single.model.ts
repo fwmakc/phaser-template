@@ -1,12 +1,12 @@
-import { SignleStateInterface } from '../interfaces/singleState.interface';
-import { StateClass } from './state.class';
+import { SignleInterface } from '../interfaces/single.interface';
+import { StorageModel } from './storage.model';
 
-export class SingleStateClass extends StateClass<string> {
+export class SingleModel extends StorageModel<string> {
   private allowList: Array<string>;
   private currentValue: string;
   private defaultValue: string;
 
-  constructor(stateName: string, singleState: SignleStateInterface) {
+  constructor(stateName: string, singleState: SignleInterface) {
     super(stateName, ['currentValue']);
 
     this.allowList = singleState.allow || [];

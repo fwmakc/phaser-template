@@ -1,4 +1,4 @@
-export interface NumericStateInterface {
+export interface NumericInterface {
   current: number;
   default: number;
   max: number;
