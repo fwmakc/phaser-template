@@ -3,13 +3,19 @@ import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class ConsoleSection extends SectionTemplate {
-  protected container = new ContainerModel();
   protected console: DomModel<HTMLElement>;
   protected textColor: string;
 
   constructor() {
     super();
+
+    this.createContainer();
     this.createConsole();
+  }
+
+  protected createContainer(): void {
+    this.container = new ContainerModel();
+    this.container.addClass('console-section');
   }
 
   protected createConsole(): void {
@@ -19,10 +25,11 @@ export class ConsoleSection extends SectionTemplate {
       color: #fff;
       font-family: monospace;
       font-size: 14px;
+      inset: calc(10px + 50vh) 0px 40px;
       line-height: 18px;
-      max-height: calc(100% - 60px);
       overflow: auto;
-      padding: 10px;
+      padding: 0 10px;
+      position: absolute;
     `);
     this.container.append(this.console);
   }

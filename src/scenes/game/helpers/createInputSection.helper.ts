@@ -10,10 +10,14 @@ export function createInputSection(scene: any) {
     const commandsScenario: CommandsScenario = new CommandsScenario({
       console: scene.consoleSection,
       input: scene.inputSection,
+      screen: scene.screenSection,
       window: scene.windowSection,
     });
     commandsScenario.exec(userInput);
   });
 
-  scene.add.dom(0, 0, scene.inputSection.getContainer()).setOrigin(0, 0);
+  scene.add
+    .dom(0, 0, scene.inputSection.getContainer())
+    .setOrigin(0, 0)
+    .setDepth(0);
 }

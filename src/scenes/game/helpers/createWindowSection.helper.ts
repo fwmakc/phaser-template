@@ -14,8 +14,11 @@ export function createWindowSection(scene: any) {
       if (scene.windowSection.isActive()) {
         scene.windowSection.hide();
       }
-    }, 3000);
+    }, 300000);
   });
 
-  scene.add.dom(0, 0, scene.windowSection.getContainer()).setOrigin(0, 0);
+  scene.add
+    .dom(0, 0, scene.windowSection.getContainer())
+    .setOrigin(0, 0)
+    .setDepth(2);
 }

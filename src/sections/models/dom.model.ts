@@ -5,6 +5,10 @@ export class DomModel<T extends HTMLElement> {
     this.element = document.createElement(tag) as T;
   }
 
+  addClass(className: string) {
+    this.element.classList.add(className);
+  }
+
   addEvent(type: string, callback: (event: any) => void) {
     this.element.addEventListener(type, callback);
   }
@@ -16,6 +20,10 @@ export class DomModel<T extends HTMLElement> {
 
   get() {
     return this.element;
+  }
+
+  setAttr(name: string, value: string | number) {
+    this.element.setAttribute(name, value.toString());
   }
 
   setContent(content: string) {

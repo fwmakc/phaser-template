@@ -3,8 +3,8 @@ import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class WindowSection extends SectionTemplate {
-  protected container = new ContainerModel();
   protected window: DomModel<HTMLElement>;
+  protected wrapper: DomModel<HTMLElement>;
   protected fakeInput: DomModel<HTMLInputElement>;
   protected active: boolean;
 
@@ -15,6 +15,7 @@ export class WindowSection extends SectionTemplate {
     super();
 
     this.createContainer();
+    this.createWrapper();
     this.createWindow();
     this.createFakeInput();
 
@@ -26,6 +27,7 @@ export class WindowSection extends SectionTemplate {
 
   protected createContainer(): void {
     this.container = new ContainerModel();
+    this.container.addClass('window-section');
   }
 
   protected createWindow(): void {
@@ -35,18 +37,29 @@ export class WindowSection extends SectionTemplate {
       font-size: 14px;
       height: auto;
       overflow: auto;
-      padding: 10px;
-      width: auto;
-
-      white-space: pre-wrap;
       overflow-wrap: break-word;
+      padding: 10px;
+      text-align: center;
+      white-space: pre-wrap;
+      width: auto;
+    `);
+    this.wrapper.append(this.window);
+  }
 
+  protected createWrapper(): void {
+    this.wrapper = new DomModel();
+    this.wrapper.setCss(`
+      background-color: black;
+      height: auto;
+      left: 50%;
+      padding: 10px;
       position: absolute;
       top: 50%;
-      left: 50%;
       transform: translate(-50%, -50%);
+      visibility: visible;
+      width: auto;
     `);
-    this.container.append(this.window);
+    this.container.append(this.wrapper);
   }
 
   private createFakeInput(): void {
@@ -86,7 +99,7 @@ export class WindowSection extends SectionTemplate {
     fakeInput.disabled = true;
 
     this.window.setContent('');
-    this.window.setStyle('visibility', 'hidden');
+    this.wrapper.setStyle('visibility', 'hidden');
 
     this.setColors();
     this.hideCallback();
@@ -113,7 +126,7 @@ export class WindowSection extends SectionTemplate {
     this.setColors(color, bgcolor);
 
     this.window.setContent(content);
-    this.window.setStyle('visibility', 'visible');
+    this.wrapper.setStyle('visibility', 'visible');
 
     const fakeInput = this.fakeInput.get();
     fakeInput.disabled = false;

@@ -3,15 +3,20 @@ import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class InputSection extends SectionTemplate {
-  protected container = new ContainerModel();
   protected input: DomModel<HTMLInputElement>;
   protected wrapper: DomModel<HTMLElement>;
 
   constructor() {
     super();
 
+    this.createContainer();
     this.createInput();
     this.createWrapper();
+  }
+
+  protected createContainer(): void {
+    this.container = new ContainerModel();
+    this.container.addClass('input-section');
   }
 
   protected createInput(): void {

@@ -6,6 +6,7 @@ export function startGame(scene: any) {
   const startScenario: StartScenario = new StartScenario({
     console: scene.consoleSection,
     input: scene.inputSection,
+    screen: scene.screenSection,
     window: scene.windowSection,
   });
   startScenario.exec();
@@ -15,6 +16,9 @@ export function startGame(scene: any) {
     scene.inputSection.focus();
     scene.windowSection.hide();
   });
+
+  const screen = scene.screenSection;
+  screen.setImage('assets/bg.png');
 
   const player: PlayerCharacter = scene.characters.get('player');
 

@@ -16,6 +16,10 @@ export class ContainerModel {
     `);
   }
 
+  addClass(className: string) {
+    this.container.addClass(className);
+  }
+
   append(dom: DomModel<HTMLElement>) {
     this.container.append(dom);
   }
