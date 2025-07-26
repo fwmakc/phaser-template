@@ -4,11 +4,11 @@ export function createScreenSection(scene: any) {
   scene.screenSection = new ScreenSection();
 
   scene.screenSection.onHide(() => {
-    scene.consoleSection.setStyle('marginTop', '0');
+    scene.consoleSection.minimized(false);
   });
 
   scene.screenSection.onShow(() => {
-    scene.consoleSection.setStyle('marginTop', '50vh');
+    scene.consoleSection.minimized(true);
   });
 
   scene.add

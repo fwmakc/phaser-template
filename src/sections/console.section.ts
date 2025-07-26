@@ -25,12 +25,9 @@ export class ConsoleSection extends SectionTemplate {
       color: #fff;
       font-family: monospace;
       font-size: 14px;
-      /*
-      inset: calc(10px + 50vh) 0px 40px;
-      margin-top: 50vh;
-      */
       inset: 0 0 40px;
       line-height: 18px;
+      margin-top: 0;
       overflow: auto;
       padding: 10px;
       position: absolute;
@@ -87,16 +84,13 @@ export class ConsoleSection extends SectionTemplate {
     return this.container.get();
   }
 
+  minimized(value = true): void {
+    this.console.setStyle('marginTop', value ? '50vh' : '0');
+  }
+
   print(text = '', color = ''): void {
     this.color(color);
     this.append(text);
     this.end();
-  }
-
-  setStyle(
-    name: keyof CSSStyleDeclaration,
-    value: CSSStyleDeclaration[keyof CSSStyleDeclaration],
-  ): void {
-    this.console.setStyle(name, value);
   }
 }

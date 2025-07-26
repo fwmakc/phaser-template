@@ -14,7 +14,7 @@ export function createWindowSection(scene: any) {
       if (scene.windowSection.isActive()) {
         scene.windowSection.hide();
       }
-    }, 300000);
+    }, 3000);
   });
 
   scene.add

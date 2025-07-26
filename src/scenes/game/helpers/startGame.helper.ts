@@ -19,7 +19,7 @@ export function startGame(scene: any) {
 
   const screen = scene.screenSection;
   screen.setImage('assets/bg.png');
-  screen.hide();
+  // screen.hide();
 
   const player: PlayerCharacter = scene.characters.get('player');
 
