@@ -18,11 +18,32 @@ export function startGame(scene: any) {
 
   const player: PlayerCharacter = scene.characters.get('player');
 
+  player.health.value += 1;
+  player.health.save();
+
+  const body = player.body.get();
+  player.body.insert('голова', 'шлем');
+  player.body.insert('голова', 'шлем2');
+  player.body.insert('левая рука', 'шлем3');
+  // player.body.remove('голова');
+  console.log('player.body', body);
+
+  const includes = player.body.includes('голова');
+  console.log('includes', includes);
+
+  const find = player.body.find('голова');
+  console.log('find', find);
+
+  const r: { [key: string]: any } = {};
+  player.body.forEach((value, key) => {
+    r[key] = value;
+  });
+  console.log('-- r', r);
+
+  /*
   player.health.reset();
   player.health.max += 1;
   player.health.value += 10;
-
-  player.health.save();
 
   console.log('player.map', player.map);
   console.log({ value: player.map.value });
@@ -55,12 +76,12 @@ export function startGame(scene: any) {
   const b = player.map.findCoordsByValue('n');
   console.log('findCoordsByValue(n)', b);
 
-  console.log('голод', player.status.push('голод'));
-  console.log('озноб', player.status.push('озноб'));
-  console.log('холодно', player.status.push('холодно'));
-  console.log('жарко', player.status.push('жарко'));
-  console.log('голод', player.status.pop('голод'));
-  console.log('хочется спать', player.status.push('хочется спать'));
+  console.log('голод', player.status.insert('голод'));
+  console.log('озноб', player.status.insert('озноб'));
+  console.log('холодно', player.status.insert('холодно'));
+  console.log('жарко', player.status.insert('жарко'));
+  console.log('голод', player.status.remove('голод'));
+  console.log('хочется спать', player.status.insert('хочется спать'));
   player.status.save();
   console.log(player.status.get());
 
@@ -78,4 +99,5 @@ export function startGame(scene: any) {
   player.walk.value = 'север';
   console.log('север', player.walk.value);
   player.walk.save();
+  */
 }

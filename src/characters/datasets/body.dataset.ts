@@ -1,6 +1,7 @@
 import { MapInterface } from '../../states/interfaces/map.interface';
 
-const allowKeys = ['head', 'body', 'left hand', 'right hand'];
+const allowKeys = ['голова', 'тело', 'левая рука', 'правая рука'];
+// const allowKeys: never[] = [];
 
 export const body: MapInterface<string> = {
   allowKeys,

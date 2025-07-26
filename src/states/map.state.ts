@@ -6,10 +6,8 @@ export class MapState<T> extends StateTemplate<MapInterface<T>> {
     return this.state.currentMap.get(name);
   }
 
-  foreach(callback: (value: T, key: string) => void): void {
-    for (const [key, value] of this.state.currentMap) {
-      callback(value, key);
-    }
+  forEach(callback: (value: T, key: string) => void): void {
+    this.state.currentMap.forEach(callback);
   }
 
   get() {
@@ -20,7 +18,16 @@ export class MapState<T> extends StateTemplate<MapInterface<T>> {
     return this.state.currentMap.has(name);
   }
 
-  pop(name: string): boolean {
+  insert(name: string, value: T): boolean {
+    const { allowKeys } = this.state;
+    if (allowKeys.length && !allowKeys.includes(name)) {
+      return false;
+    }
+    this.state.currentMap.set(name, value);
+    return true;
+  }
+
+  remove(name: string): boolean {
     const { allowKeys } = this.state;
     if (allowKeys.length && !allowKeys.includes(name)) {
       return false;
@@ -29,15 +36,6 @@ export class MapState<T> extends StateTemplate<MapInterface<T>> {
       return false;
     }
     this.state.currentMap.delete(name);
-    return true;
-  }
-
-  push(name: string, value: T): boolean {
-    const { allowKeys } = this.state;
-    if (allowKeys.length && !allowKeys.includes(name)) {
-      return false;
-    }
-    this.state.currentMap.set(name, value);
     return true;
   }
 

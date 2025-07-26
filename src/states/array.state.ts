@@ -18,19 +18,7 @@ export class ArrayState extends StateTemplate<ArrayInterface> {
     return this.state.currentList.includes(userValue);
   }
 
-  pop(userValue: string): boolean {
-    const { allowList, currentList } = this.state;
-    if (!currentList.length || !currentList.includes(userValue)) {
-      return false;
-    }
-    if (allowList.length && !allowList.includes(userValue)) {
-      return false;
-    }
-    this.state.currentList = currentList.filter((item) => item !== userValue);
-    return true;
-  }
-
-  push(userValue: string): boolean {
+  insert(userValue: string): boolean {
     const { allowList, currentList, maxLength } = this.state;
     if (maxLength && currentList.length >= maxLength) {
       return false;
@@ -42,6 +30,18 @@ export class ArrayState extends StateTemplate<ArrayInterface> {
       return false;
     }
     this.state.currentList.push(userValue);
+    return true;
+  }
+
+  remove(userValue: string): boolean {
+    const { allowList, currentList } = this.state;
+    if (!currentList.length || !currentList.includes(userValue)) {
+      return false;
+    }
+    if (allowList.length && !allowList.includes(userValue)) {
+      return false;
+    }
+    this.state.currentList = currentList.filter((item) => item !== userValue);
     return true;
   }
 
