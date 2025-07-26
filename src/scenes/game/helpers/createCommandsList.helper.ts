@@ -9,6 +9,7 @@ export function createCommandsList(scene: any) {
     maxLength: 10,
   });
 
+  /*
   const stack = scene.commandsList;
   console.log('+', +stack.push('1'), stack.peek(), stack.value);
   console.log('+', +stack.push('2'), stack.peek(), stack.value);
@@ -54,4 +55,5 @@ export function createCommandsList(scene: any) {
   });
 
   console.log(stack.value);
+  */
 }
