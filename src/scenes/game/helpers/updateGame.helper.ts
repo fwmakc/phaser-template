@@ -10,7 +10,6 @@ export function updateGame(scene: any, time: number) {
     // player.health.max = 100;
     // player.health.save();
     console.log(player.health.value, player.health.max);
-    console.log(scene.commandsList.value);
     lastUpdate = time;
   }
 }
