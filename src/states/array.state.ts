@@ -45,7 +45,7 @@ export class ArrayState extends StateTemplate<ArrayInterface> {
     return true;
   }
 
-  reset(): void {
+  clear(): void {
     this.state.currentList = [];
   }
 

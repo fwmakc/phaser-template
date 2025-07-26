@@ -54,10 +54,10 @@ export class InputSection extends SectionTemplate {
     this.container.append(this.wrapper);
   }
 
-  clearValue(): void {
-    const input = this.input.get();
-    input.value = '';
-  }
+  // clearValue(): void {
+  //   const input = this.input.get();
+  //   input.value = '';
+  // }
 
   focus(): void {
     const input = this.input.get();
@@ -71,19 +71,24 @@ export class InputSection extends SectionTemplate {
     return this.container.get();
   }
 
-  getValue(): string {
-    const input = this.input.get();
-    return input.value;
-  }
+  // getValue(): string {
+  //   const input = this.input.get();
+  //   return input.value;
+  // }
 
-  onPressEnter(callback: (value: string) => void): void {
-    this.input.addEvent('keypress', (event: KeyboardEvent) => {
-      if (event.key !== 'Enter') {
+  onKeyPress(callback: (key: string, value: string) => string | null): void {
+    this.input.addEvent('keyup', (event: KeyboardEvent) => {
+      // if (event.key !== 'Enter') {
+      //   return;
+      // }
+      // const value = this.getValue();
+      // this.clearValue();
+      const value = this.input.get().value;
+      const returnedValue = callback(event.key, value);
+      if (returnedValue === null) {
         return;
       }
-      const value = this.getValue();
-      this.clearValue();
-      callback(value);
+      this.input.get().value = returnedValue || '';
     });
   }
 

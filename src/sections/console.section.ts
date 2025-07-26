@@ -25,10 +25,14 @@ export class ConsoleSection extends SectionTemplate {
       color: #fff;
       font-family: monospace;
       font-size: 14px;
+      /*
       inset: calc(10px + 50vh) 0px 40px;
+      margin-top: 50vh;
+      */
+      inset: 0 0 40px;
       line-height: 18px;
       overflow: auto;
-      padding: 0 10px;
+      padding: 10px;
       position: absolute;
     `);
     this.container.append(this.console);
@@ -87,5 +91,12 @@ export class ConsoleSection extends SectionTemplate {
     this.color(color);
     this.append(text);
     this.end();
+  }
+
+  setStyle(
+    name: keyof CSSStyleDeclaration,
+    value: CSSStyleDeclaration[keyof CSSStyleDeclaration],
+  ): void {
+    this.console.setStyle(name, value);
   }
 }

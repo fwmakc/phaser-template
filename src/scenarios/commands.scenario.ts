@@ -20,6 +20,7 @@ export class CommandsScenario extends ScenarioTemplate {
     const command: CommandInterface = new CurrentCommand({
       console: this.console,
       input: this.input,
+      screen: this.screen,
       window: this.window,
     });
 

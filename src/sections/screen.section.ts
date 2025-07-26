@@ -3,13 +3,20 @@ import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class ScreenSection extends SectionTemplate {
+  protected active: boolean;
   protected screen: DomModel<HTMLElement>;
+
+  private hideCallback: () => void;
+  private showCallback: () => void;
 
   constructor() {
     super();
 
     this.createContainer();
     this.createScreen();
+
+    this.hideCallback = () => {};
+    this.showCallback = () => {};
   }
 
   protected createContainer(): void {
@@ -34,6 +41,31 @@ export class ScreenSection extends SectionTemplate {
     return this.container.get();
   }
 
+  hide(): void {
+    this.screen.setContent('');
+    this.screen.setStyle('visibility', 'hidden');
+    this.hideCallback();
+    this.active = false;
+  }
+
+  isActive(): boolean {
+    return this.active;
+  }
+
+  onHide(hideCallback: () => void): void {
+    this.hideCallback = hideCallback;
+  }
+
+  onShow(showCallback: () => void): void {
+    this.showCallback = showCallback;
+  }
+
+  show(): void {
+    this.active = true;
+    this.showCallback();
+    this.screen.setStyle('visibility', 'visible');
+  }
+
   setImage(imagePath: string): void {
     const img = new DomModel<HTMLElement>('img');
     img.setAttr('src', imagePath);
@@ -43,5 +75,6 @@ export class ScreenSection extends SectionTemplate {
       width: 100%;
     `);
     this.screen.append(img);
+    this.show();
   }
 }

@@ -7,6 +7,7 @@ import { WindowSection } from '../sections/window.section';
 import { CharacterInterface } from '../characters/interfaces/character.interface';
 import { ThingInterface } from '../things/interfaces/thing.interface';
 
+import { createCommandsList } from './game/helpers/createCommandsList.helper';
 import { createConsoleSection } from './game/helpers/createConsoleSection.helper';
 import { createInputSection } from './game/helpers/createInputSection.helper';
 import { createScreenSection } from './game/helpers/createScreenSection.helper';
@@ -14,6 +15,7 @@ import { createWindowSection } from './game/helpers/createWindowSection.helper';
 import { initScene } from './game/helpers/initScene.helper';
 import { startGame } from './game/helpers/startGame.helper';
 import { updateGame } from './game/helpers/updateGame.helper';
+import { StackState } from '../states/stack.state';
 
 export class GameScene extends Phaser.Scene {
   consoleSection: ConsoleSection;
@@ -22,6 +24,7 @@ export class GameScene extends Phaser.Scene {
   windowSection: WindowSection;
   things: Map<string, ThingInterface>;
   characters: Map<string, CharacterInterface>;
+  commandsList: StackState<string>;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -30,6 +33,7 @@ export class GameScene extends Phaser.Scene {
   preload() {}
 
   create() {
+    createCommandsList(this);
     createConsoleSection(this);
     createInputSection(this);
     createScreenSection(this);

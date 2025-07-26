@@ -39,7 +39,7 @@ export class MapState<T> extends StateTemplate<MapInterface<T>> {
     return true;
   }
 
-  reset(): void {
+  clear(): void {
     this.state.currentMap.clear();
   }
 

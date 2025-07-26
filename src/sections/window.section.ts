@@ -3,10 +3,10 @@ import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class WindowSection extends SectionTemplate {
+  protected active: boolean;
+  protected fakeInput: DomModel<HTMLInputElement>;
   protected window: DomModel<HTMLElement>;
   protected wrapper: DomModel<HTMLElement>;
-  protected fakeInput: DomModel<HTMLInputElement>;
-  protected active: boolean;
 
   private hideCallback: () => void;
   private showCallback: () => void;
