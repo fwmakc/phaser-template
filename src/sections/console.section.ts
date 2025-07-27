@@ -1,38 +1,29 @@
-import { ContainerModel } from './models/container.model';
 import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class ConsoleSection extends SectionTemplate {
-  protected console: DomModel<HTMLElement>;
   protected textColor: string;
 
   constructor() {
     super();
 
     this.createContainer();
-    this.createConsole();
   }
 
   protected createContainer(): void {
-    this.container = new ContainerModel();
+    this.container = new DomModel();
     this.container.addClass('console-section');
-  }
-
-  protected createConsole(): void {
-    this.console = new DomModel();
-    this.console.setCss(`
-      background-color: transparent;
+    this.container.setCss(`
       color: #fff;
+      flex: 0 1 auto;
       font-family: monospace;
       font-size: 14px;
-      inset: 0 0 40px;
+      height: 100%;
       line-height: 18px;
-      margin-top: 0;
+      margin-top: 10px;
       overflow: auto;
-      padding: 10px;
-      position: absolute;
+      padding: 0 10px;
     `);
-    this.container.append(this.console);
   }
 
   append(text = ''): ConsoleSection {
@@ -41,19 +32,19 @@ export class ConsoleSection extends SectionTemplate {
       span.setStyle('color', this.textColor);
     }
     span.setContent(text);
-    this.console.append(span);
+    this.container.append(span);
     return this;
   }
 
   br(): ConsoleSection {
     const br = new DomModel('br');
-    this.console.append(br);
-    this.console.get().scrollTop = this.console.get().scrollHeight;
+    this.container.append(br);
+    this.container.get().scrollTop = this.container.get().scrollHeight;
     return this;
   }
 
   clear(): ConsoleSection {
-    this.console.setContent('');
+    this.container.setContent('');
     return this;
   }
 
@@ -63,13 +54,13 @@ export class ConsoleSection extends SectionTemplate {
   }
 
   countLength(): number {
-    return this.console.get().innerText.length;
+    return this.container.get().innerText.length;
   }
 
   countLines(): number {
-    const height = this.console.get().offsetHeight;
+    const height = this.container.get().offsetHeight;
     const lineHeight = parseFloat(
-      getComputedStyle(this.console.get()).lineHeight,
+      getComputedStyle(this.container.get()).lineHeight,
     );
     const numberOfLines = Math.floor(height / lineHeight);
     return numberOfLines;
@@ -82,10 +73,6 @@ export class ConsoleSection extends SectionTemplate {
 
   getContainer(): HTMLElement {
     return this.container.get();
-  }
-
-  minimized(value = true): void {
-    this.console.setStyle('marginTop', value ? '50vh' : '0');
   }
 
   print(text = '', color = ''): void {

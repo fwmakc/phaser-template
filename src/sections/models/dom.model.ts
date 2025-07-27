@@ -34,6 +34,10 @@ export class DomModel<T extends HTMLElement> {
     this.element.style.cssText = style;
   }
 
+  setId(id: string) {
+    this.element.id = id;
+  }
+
   setStyle<K extends keyof CSSStyleDeclaration>(
     name: K,
     value: CSSStyleDeclaration[K],

@@ -19,8 +19,5 @@ export function createWindowSection(scene: any) {
 
   scene.windowSection.hide();
 
-  scene.add
-    .dom(0, 0, scene.windowSection.getContainer())
-    .setOrigin(0, 0)
-    .setDepth(2);
+  scene.domContainer.get().append(scene.windowSection.getContainer());
 }

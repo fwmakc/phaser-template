@@ -19,6 +19,34 @@ export function startGame(scene: any) {
 
   const screen = scene.screenSection;
   screen.setImage('assets/bg.png');
+
+  scene.inputSection.focus();
+
+  setTimeout(() => {
+    screen.setVideo({
+      src: 'assets/VID-20250701-WA0000.mp4',
+      onEnded: (video: HTMLVideoElement) => {
+        console.log('+');
+        screen.setImage('assets/bg.png');
+        // video.play();
+      },
+      // loop: true,
+    });
+  }, 5000);
+
+  setTimeout(() => {
+    screen.setAudio({
+      src: 'assets/theme.mp3',
+      loop: true,
+    });
+  }, 2000);
+
+  setTimeout(() => {
+    screen.setAudio({
+      src: 'assets/sound.mp3',
+    });
+  }, 3000);
+
   // screen.hide();
 
   const player: PlayerCharacter = scene.characters.get('player');

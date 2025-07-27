@@ -1,4 +1,3 @@
-import { ContainerModel } from './models/container.model';
 import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
@@ -26,8 +25,12 @@ export class WindowSection extends SectionTemplate {
   }
 
   protected createContainer(): void {
-    this.container = new ContainerModel();
+    this.container = new DomModel();
     this.container.addClass('window-section');
+    this.container.setCss(`
+      inset: 0px;
+      position: absolute;
+    `);
   }
 
   protected createWindow(): void {
@@ -100,7 +103,7 @@ export class WindowSection extends SectionTemplate {
 
     this.window.setContent('');
     this.wrapper.setStyle('visibility', 'hidden');
-    this.container.hide();
+    this.container.setStyle('display', 'none');
 
     this.setColors();
     this.hideCallback();
@@ -128,7 +131,7 @@ export class WindowSection extends SectionTemplate {
 
     this.window.setContent(content);
     this.wrapper.setStyle('visibility', 'visible');
-    this.container.show();
+    this.container.setStyle('display', 'block');
 
     const fakeInput = this.fakeInput.get();
     fakeInput.disabled = false;

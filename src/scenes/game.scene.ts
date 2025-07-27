@@ -3,6 +3,7 @@ import { ConsoleSection } from '../sections/console.section';
 import { InputSection } from '../sections/input.section';
 import { ScreenSection } from '../sections/screen.section';
 import { WindowSection } from '../sections/window.section';
+import { DomModel } from '../sections/models/dom.model';
 
 import { CharacterInterface } from '../characters/interfaces/character.interface';
 import { ThingInterface } from '../things/interfaces/thing.interface';
@@ -16,8 +17,10 @@ import { initScene } from './game/helpers/initScene.helper';
 import { startGame } from './game/helpers/startGame.helper';
 import { updateGame } from './game/helpers/updateGame.helper';
 import { StackState } from '../states/stack.state';
+import { createDomContainer } from './game/helpers/createDomContainer.helper';
 
 export class GameScene extends Phaser.Scene {
+  domContainer: DomModel<HTMLElement>;
   consoleSection: ConsoleSection;
   inputSection: InputSection;
   screenSection: ScreenSection;
@@ -33,11 +36,12 @@ export class GameScene extends Phaser.Scene {
   preload() {}
 
   create() {
-    createCommandsList(this);
+    createDomContainer(this);
+    createScreenSection(this);
     createConsoleSection(this);
     createInputSection(this);
-    createScreenSection(this);
     createWindowSection(this);
+    createCommandsList(this);
     initScene(this);
     startGame(this);
   }

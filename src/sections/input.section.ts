@@ -1,22 +1,30 @@
-import { ContainerModel } from './models/container.model';
 import { DomModel } from './models/dom.model';
 import { SectionTemplate } from './templates/section.template';
 
 export class InputSection extends SectionTemplate {
   protected input: DomModel<HTMLInputElement>;
-  protected wrapper: DomModel<HTMLElement>;
 
   constructor() {
     super();
 
     this.createContainer();
     this.createInput();
-    this.createWrapper();
   }
 
   protected createContainer(): void {
-    this.container = new ContainerModel();
+    this.container = new DomModel();
     this.container.addClass('input-section');
+    this.container.setCss(`
+      color: #fff;
+      display: flex;
+      flex: 0 0 auto;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 20px;
+      overflow: hidden;
+      padding: 10px;
+    `);
+    this.container.setContent('> ');
   }
 
   protected createInput(): void {
@@ -33,25 +41,7 @@ export class InputSection extends SectionTemplate {
     `);
     const input = this.input.get();
     input.type = 'text';
-  }
-
-  protected createWrapper(): void {
-    this.wrapper = new DomModel();
-    this.wrapper.setCss(`
-      background-color: transparent;
-      color: #fff;
-      display: flex;
-      font-family: monospace;
-      font-size: 14px;
-      inset: auto 0px 0px;
-      line-height: 20px;
-      overflow: hidden;
-      padding: 10px;
-      position: absolute;
-    `);
-    this.wrapper.setContent('> ');
-    this.wrapper.append(this.input);
-    this.container.append(this.wrapper);
+    this.container.append(this.input);
   }
 
   focus(): void {

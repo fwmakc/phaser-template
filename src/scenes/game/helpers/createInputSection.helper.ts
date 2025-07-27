@@ -52,8 +52,5 @@ export function createInputSection(scene: any) {
     return '';
   });
 
-  scene.add
-    .dom(0, 0, scene.inputSection.getContainer())
-    .setOrigin(0, 0)
-    .setDepth(0);
+  scene.domContainer.get().append(scene.inputSection.getContainer());
 }
