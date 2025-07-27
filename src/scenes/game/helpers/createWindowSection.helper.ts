@@ -17,6 +17,8 @@ export function createWindowSection(scene: any) {
     }, 3000);
   });
 
+  scene.windowSection.hide();
+
   scene.add
     .dom(0, 0, scene.windowSection.getContainer())
     .setOrigin(0, 0)

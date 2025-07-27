@@ -27,4 +27,12 @@ export class ContainerModel {
   get(): HTMLElement {
     return this.container.get();
   }
+
+  hide(): void {
+    this.container.setStyle('visibility', 'hidden');
+  }
+
+  show(): void {
+    this.container.setStyle('visibility', 'visible');
+  }
 }

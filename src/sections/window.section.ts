@@ -100,6 +100,7 @@ export class WindowSection extends SectionTemplate {
 
     this.window.setContent('');
     this.wrapper.setStyle('visibility', 'hidden');
+    this.container.hide();
 
     this.setColors();
     this.hideCallback();
@@ -127,6 +128,7 @@ export class WindowSection extends SectionTemplate {
 
     this.window.setContent(content);
     this.wrapper.setStyle('visibility', 'visible');
+    this.container.show();
 
     const fakeInput = this.fakeInput.get();
     fakeInput.disabled = false;
